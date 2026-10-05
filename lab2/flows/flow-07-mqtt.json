@@ -1,0 +1,121 @@
+[
+    {
+        "id": "flow7",
+        "type": "tab",
+        "label": "2.7 MQTT",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "mqtt_broker_1",
+        "type": "mqtt-broker",
+        "name": "Mosquitto Public Broker",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "inject7",
+        "type": "inject",
+        "z": "flow7",
+        "name": "Publish MQTT Message",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "MQTT Message from Novickij",
+        "payloadType": "str",
+        "x": 180,
+        "y": 100,
+        "wires": [
+            [
+                "mqtt_out7"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_out7",
+        "type": "mqtt out",
+        "z": "flow7",
+        "name": "Publish to Topic",
+        "topic": "lab2/Novickij/mqtt",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "mqtt_broker_1",
+        "x": 420,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "mqtt_in7",
+        "type": "mqtt in",
+        "z": "flow7",
+        "name": "Subscribe to Topic",
+        "topic": "lab2/Novickij/mqtt",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "mqtt_broker_1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "debug7"
+            ]
+        ]
+    },
+    {
+        "id": "debug7",
+        "type": "debug",
+        "z": "flow7",
+        "name": "Received MQTT",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 180,
+        "wires": []
+    }
+]

@@ -1,0 +1,86 @@
+[
+    {
+        "id": "flow4",
+        "type": "tab",
+        "label": "2.4 Change",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "inject4",
+        "type": "inject",
+        "z": "flow4",
+        "name": "Trigger Change",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "change4"
+            ]
+        ]
+    },
+    {
+        "id": "change4",
+        "type": "change",
+        "z": "flow4",
+        "name": "Set Topic, Timestamp, Payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "lab2/Novickij/change",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Data updated by Novickij",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 100,
+        "wires": [
+            [
+                "debug4"
+            ]
+        ]
+    },
+    {
+        "id": "debug4",
+        "type": "debug",
+        "z": "flow4",
+        "name": "Complete Msg",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 100,
+        "wires": []
+    }
+]

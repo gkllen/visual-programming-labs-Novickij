@@ -1,0 +1,121 @@
+[
+    {
+        "id": "flow3",
+        "type": "tab",
+        "label": "2.3 Switch",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "inject3",
+        "type": "inject",
+        "z": "flow3",
+        "name": "Trigger Random Score",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "function3"
+            ]
+        ]
+    },
+    {
+        "id": "function3",
+        "type": "function",
+        "z": "flow3",
+        "name": "Generate Score",
+        "func": "const score = Math.floor(Math.random() * 100);\nmsg.payload = score;\nmsg.student = 'Novickij';\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 100,
+        "wires": [
+            [
+                "switch3"
+            ]
+        ]
+    },
+    {
+        "id": "switch3",
+        "type": "switch",
+        "z": "flow3",
+        "name": "Check Score >= 50",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "50",
+                "vt": "num"
+            },
+            {
+                "t": "lt",
+                "v": "50",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 550,
+        "y": 100,
+        "wires": [
+            [
+                "debug3_pass"
+            ],
+            [
+                "debug3_fail"
+            ]
+        ]
+    },
+    {
+        "id": "debug3_pass",
+        "type": "debug",
+        "z": "flow3",
+        "name": "Pass (>= 50)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 70,
+        "wires": []
+    },
+    {
+        "id": "debug3_fail",
+        "type": "debug",
+        "z": "flow3",
+        "name": "Fail (< 50)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 130,
+        "wires": []
+    }
+]

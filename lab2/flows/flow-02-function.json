@@ -1,0 +1,71 @@
+[
+    {
+        "id": "flow2",
+        "type": "tab",
+        "label": "2.2 Function",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "inject2",
+        "type": "inject",
+        "z": "flow2",
+        "name": "Trigger Function",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "function2"
+            ]
+        ]
+    },
+    {
+        "id": "function2",
+        "type": "function",
+        "z": "flow2",
+        "name": "Process Student Data",
+        "func": "const studentName = 'Novickij';\nlet scores = [85, 90, 78, 92];\nlet total = 0;\n\nfor (let i = 0; i < scores.length; i++) {\n    total += scores[i];\n}\n\nlet average = total / scores.length;\nlet status = 'passed';\n\nif (average < 60) {\n    status = 'failed';\n}\n\nmsg.payload = {\n    student: studentName,\n    averageScore: average,\n    status: status,\n    processedAt: new Date().toISOString()\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 100,
+        "wires": [
+            [
+                "debug2"
+            ]
+        ]
+    },
+    {
+        "id": "debug2",
+        "type": "debug",
+        "z": "flow2",
+        "name": "Function Output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 100,
+        "wires": []
+    }
+]
