@@ -1,0 +1,67 @@
+[
+    {
+        "id": "fcd94311b8d3e819",
+        "type": "inject",
+        "z": "8d27799d60df1687",
+        "name": "Student Data JSON",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"student\":\"Novickij\",\"course\":\"Visual Programming\",\"labNumber\":2}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 160,
+        "wires": [
+            [
+                "1638cf54533b824d"
+            ]
+        ]
+    },
+    {
+        "id": "7baaa72dd4dc219c",
+        "type": "debug",
+        "z": "8d27799d60df1687",
+        "name": "Formatted Message",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "1638cf54533b824d",
+        "type": "template",
+        "z": "8d27799d60df1687",
+        "name": "Render Text Template",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Student {{payload.student}} successfully completed Lab №{{payload.labNumber}} in {{payload.course}}!",
+        "output": "str",
+        "x": 340,
+        "y": 200,
+        "wires": [
+            [
+                "7baaa72dd4dc219c"
+            ]
+        ]
+    }
+]

@@ -1,0 +1,118 @@
+[
+    {
+        "id": "6e6e905109946b64",
+        "type": "inject",
+        "z": "529fc3aef115203c",
+        "name": "Publish Message",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Hello MQTT from Novickij",
+        "payloadType": "str",
+        "x": 180,
+        "y": 220,
+        "wires": [
+            [
+                "9764a1da0869c403"
+            ]
+        ]
+    },
+    {
+        "id": "735edc802a77a729",
+        "type": "debug",
+        "z": "529fc3aef115203c",
+        "name": "MQTT Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "1c7502bf01fe4a47",
+        "type": "mqtt in",
+        "z": "529fc3aef115203c",
+        "name": "Receive from Broker",
+        "topic": "lab2/Novickij/data",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "678a6c680bef9e19",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 140,
+        "wires": [
+            [
+                "735edc802a77a729"
+            ]
+        ]
+    },
+    {
+        "id": "9764a1da0869c403",
+        "type": "mqtt out",
+        "z": "529fc3aef115203c",
+        "name": "Send to Broker",
+        "topic": "lab2/Novickij/data",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "678a6c680bef9e19",
+        "x": 400,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "678a6c680bef9e19",
+        "type": "mqtt-broker",
+        "name": "Mosquitto Public Broker",
+        "broker": "test.mosquitto.org",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

@@ -1,0 +1,72 @@
+[
+    {
+        "id": "122861785636d6eb",
+        "type": "inject",
+        "z": "55835b81363e7a32",
+        "name": "Trigger HTTP GET",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 180,
+        "wires": [
+            [
+                "d9f63f034479b243"
+            ]
+        ]
+    },
+    {
+        "id": "d9f63f034479b243",
+        "type": "http request",
+        "z": "55835b81363e7a32",
+        "name": "Fetch Todo JSON",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://jsonplaceholder.typicode.com/todos/1",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 230,
+        "y": 260,
+        "wires": [
+            [
+                "b3525ea8d8cf4cad"
+            ]
+        ]
+    },
+    {
+        "id": "b3525ea8d8cf4cad",
+        "type": "debug",
+        "z": "55835b81363e7a32",
+        "name": "API Response",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 180,
+        "wires": []
+    }
+]

@@ -1,0 +1,170 @@
+[
+    {
+        "id": "21c08bbdb0f4830e",
+        "type": "http in",
+        "z": "06ae3440dcc73122",
+        "name": "GET /api/text",
+        "url": "/api/text",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 80,
+        "wires": [
+            [
+                "2989bf8688cadf40"
+            ]
+        ]
+    },
+    {
+        "id": "2989bf8688cadf40",
+        "type": "template",
+        "z": "06ae3440dcc73122",
+        "name": "Text Response",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "plain",
+        "template": "Hello from Node-RED API! Author: Novickij",
+        "output": "str",
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "46dc341ef5eecb88"
+            ]
+        ]
+    },
+    {
+        "id": "46dc341ef5eecb88",
+        "type": "http response",
+        "z": "06ae3440dcc73122",
+        "name": "200 OK Items",
+        "statusCode": "200",
+        "headers": {},
+        "x": 440,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "6c0886fa7dd7ef0f",
+        "type": "http in",
+        "z": "06ae3440dcc73122",
+        "name": "GET /api/info",
+        "url": "/api/info",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 240,
+        "wires": [
+            [
+                "aff30d49f7fa401a"
+            ]
+        ]
+    },
+    {
+        "id": "407236d64b53a343",
+        "type": "http response",
+        "z": "06ae3440dcc73122",
+        "name": "400 Bad Request",
+        "statusCode": "400",
+        "headers": {},
+        "x": 470,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "aff30d49f7fa401a",
+        "type": "function",
+        "z": "06ae3440dcc73122",
+        "name": "Build Info JSON",
+        "func": "msg.payload = {\n    status: \"success\",\n    student: \"Novickij\",\n    lab: 2,\n    environment: \"Node-RED on Docker\",\n    serverTime: new Date().toISOString()\n};\nmsg.headers = {\n    \"Content-Type\": \"application/json\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 340,
+        "wires": [
+            [
+                "407236d64b53a343"
+            ]
+        ]
+    },
+    {
+        "id": "293d3052468aea6c",
+        "type": "function",
+        "z": "06ae3440dcc73122",
+        "name": "Check Query & Items",
+        "func": "// Проверяем параметр запроса ?type=...\nconst queryType = msg.req.query.type;\n\nif (queryType === \"all\") {\n    msg.statusCode = 200;\n    msg.payload = [\n        { id: 1, name: \"Node-RED Service\", status: \"active\" },\n        { id: 2, name: \"Mosquitto Broker\", status: \"active\" },\n        { id: 3, name: \"Lab Documentation\", status: \"ready\" }\n    ];\n} else {\n    msg.statusCode = 400;\n    msg.payload = {\n        error: \"Bad Request\",\n        message: \"Missing or invalid 'type' query parameter. Use ?type=all\"\n    };\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 480,
+        "wires": [
+            [
+                "b8d188be39b24d78"
+            ]
+        ]
+    },
+    {
+        "id": "944327506af809f2",
+        "type": "http in",
+        "z": "06ae3440dcc73122",
+        "name": "GET /api/items",
+        "url": "/api/items",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 420,
+        "wires": [
+            [
+                "293d3052468aea6c"
+            ]
+        ]
+    },
+    {
+        "id": "b8d188be39b24d78",
+        "type": "switch",
+        "z": "06ae3440dcc73122",
+        "name": "Route Status",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "200",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "400",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 450,
+        "y": 440,
+        "wires": [
+            [
+                "46dc341ef5eecb88"
+            ],
+            [
+                "407236d64b53a343"
+            ]
+        ]
+    }
+]
