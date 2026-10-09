@@ -1,0 +1,89 @@
+[
+    {
+        "id": "155b867d11034576",
+        "type": "inject",
+        "z": "cfaee80db339a756",
+        "name": "Trigger Change",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 80,
+        "wires": [
+            [
+                "57e5a592137fc8a9"
+            ]
+        ]
+    },
+    {
+        "id": "d4089c97e0e8cc53",
+        "type": "debug",
+        "z": "cfaee80db339a756",
+        "name": "Full msg Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "57e5a592137fc8a9",
+        "type": "change",
+        "z": "cfaee80db339a756",
+        "name": "Set Metadata & Payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "lab2/Novickij/change",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Data mutated by Change node for Novickij",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 160,
+        "wires": [
+            [
+                "d4089c97e0e8cc53"
+            ]
+        ]
+    }
+]

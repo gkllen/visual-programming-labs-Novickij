@@ -1,0 +1,68 @@
+[
+    {
+        "id": "5c6f5876cd53a87c",
+        "type": "inject",
+        "z": "69017b72557998a5",
+        "name": "Trigger Function",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 140,
+        "wires": [
+            [
+                "c409efd3c4e1a27b"
+            ]
+        ]
+    },
+    {
+        "id": "c409efd3c4e1a27b",
+        "type": "function",
+        "z": "69017b72557998a5",
+        "name": "Calculate Score",
+        "func": "// 1. Константа и массив оценок\nconst grades = [8, 9, 7, 10, 8];\nlet sum = 0;\n\n// 2. Цикл for для подсчета суммы\nfor (let i = 0; i < grades.length; i++) {\n    sum += grades[i];\n}\n\n// 3. Вычисление среднего значения\nconst average = sum / grades.length;\nlet status = \"\";\n\n// 4. Ветвление if / else\nif (average >= 8.0) {\n    status = \"Passed with Honors\";\n} else {\n    status = \"Passed\";\n}\n\n// 5. Формирование объекта в msg.payload\nmsg.payload = {\n    student: \"Novickij\",\n    gradesList: grades,\n    averageScore: average,\n    academicStatus: status\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 220,
+        "y": 200,
+        "wires": [
+            [
+                "bdaec1a1cb73c8f5"
+            ]
+        ]
+    },
+    {
+        "id": "bdaec1a1cb73c8f5",
+        "type": "debug",
+        "z": "69017b72557998a5",
+        "name": "Function Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 300,
+        "y": 120,
+        "wires": []
+    }
+]

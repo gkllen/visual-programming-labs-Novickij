@@ -1,0 +1,48 @@
+[
+    {
+        "id": "8cb694c64134ca54",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Novickij 5s",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "lab2/Novickij/basic",
+        "payload": "Novickij",
+        "payloadType": "str",
+        "x": 70,
+        "y": 180,
+        "wires": [
+            [
+                "54bf3bd421c086d1"
+            ]
+        ]
+    },
+    {
+        "id": "54bf3bd421c086d1",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "Complete msg",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 280,
+        "y": 180,
+        "wires": []
+    }
+]
