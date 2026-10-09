@@ -1,0 +1,134 @@
+[
+    {
+        "id": "aeb36e755e02799b",
+        "type": "inject",
+        "z": "b414d6c0683e8f0e",
+        "name": "Trigger Write",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 160,
+        "wires": [
+            [
+                "8dca5cd6b552f57f"
+            ]
+        ]
+    },
+    {
+        "id": "87d5cacd8fd2adb6",
+        "type": "inject",
+        "z": "b414d6c0683e8f0e",
+        "name": "Trigger Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "4bebd3ef3eb5707b"
+            ]
+        ]
+    },
+    {
+        "id": "8dca5cd6b552f57f",
+        "type": "function",
+        "z": "b414d6c0683e8f0e",
+        "name": "Generate Log Entry",
+        "func": "const timestamp = new Date().toISOString();\nmsg.payload = \"Log entry by Novickij at \" + timestamp + \"\\n\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 200,
+        "wires": [
+            [
+                "9beb0bd11c67ce28"
+            ]
+        ]
+    },
+    {
+        "id": "9beb0bd11c67ce28",
+        "type": "file",
+        "z": "b414d6c0683e8f0e",
+        "name": "Write to Disk",
+        "filename": "/data/lab2-Novickij.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 490,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4bebd3ef3eb5707b",
+        "type": "file in",
+        "z": "b414d6c0683e8f0e",
+        "name": "Read from Disk",
+        "filename": "/data/lab2-Novickij.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 340,
+        "y": 300,
+        "wires": [
+            [
+                "1342988746b0ceaf"
+            ]
+        ]
+    },
+    {
+        "id": "1342988746b0ceaf",
+        "type": "debug",
+        "z": "b414d6c0683e8f0e",
+        "name": "File Content Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 300,
+        "wires": []
+    }
+]

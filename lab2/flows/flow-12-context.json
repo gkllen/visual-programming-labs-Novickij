@@ -1,0 +1,134 @@
+[
+    {
+        "id": "553fd71ae59263d0",
+        "type": "inject",
+        "z": "01b6b603966e9d1d",
+        "name": "Count Up (+1)",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "c9f549b47ada5e8c"
+            ]
+        ]
+    },
+    {
+        "id": "9fbf5edfa8b4e7a8",
+        "type": "inject",
+        "z": "01b6b603966e9d1d",
+        "name": "Reset Trigger",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 260,
+        "wires": [
+            [
+                "e1a4ec6cf9db3f6c"
+            ]
+        ]
+    },
+    {
+        "id": "ed8ecf1a4700e95e",
+        "type": "debug",
+        "z": "01b6b603966e9d1d",
+        "name": "Current Count",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "7b991ed22c333fbb",
+        "type": "debug",
+        "z": "01b6b603966e9d1d",
+        "name": "Reset Status",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "c9f549b47ada5e8c",
+        "type": "function",
+        "z": "01b6b603966e9d1d",
+        "name": "Increment Counter",
+        "func": "// Получаем текущее значение счетчика из контекста flow (если еще нет, берем 0)\nlet count = flow.get(\"visitCount\") || 0;\n\n// Увеличиваем значение\ncount += 1;\n\n// Сохраняем обновленное значение обратно в контекст\nflow.set(\"visitCount\", count);\n\n// Формируем вывод\nmsg.payload = {\n    student: \"Novickij\",\n    counterValue: count,\n    message: \"Счётчик успешно увеличен на 1\"\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 100,
+        "wires": [
+            [
+                "ed8ecf1a4700e95e"
+            ]
+        ]
+    },
+    {
+        "id": "e1a4ec6cf9db3f6c",
+        "type": "function",
+        "z": "01b6b603966e9d1d",
+        "name": "Reset Counter",
+        "func": "// Сбрасываем значение счетчика в 0\nflow.set(\"visitCount\", 0);\n\nmsg.payload = {\n    student: \"Novickij\",\n    counterValue: 0,\n    message: \"Счётчик сброшен в 0\"\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 240,
+        "wires": [
+            [
+                "7b991ed22c333fbb"
+            ]
+        ]
+    }
+]

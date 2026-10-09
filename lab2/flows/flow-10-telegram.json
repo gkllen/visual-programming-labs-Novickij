@@ -1,0 +1,171 @@
+[
+    {
+        "id": "405e27426fcb7498",
+        "type": "telegram receiver",
+        "z": "85208d6bd6519c2c",
+        "name": "",
+        "bot": "0e3f7ae3819401e0",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "hasinput": false,
+        "inputs": 0,
+        "handleallupdates": false,
+        "handleprocessupdates": false,
+        "x": 110,
+        "y": 340,
+        "wires": [
+            [
+                "390e5c235eac6ac5"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "0dfc17f8ca26caf0",
+        "type": "telegram sender",
+        "z": "85208d6bd6519c2c",
+        "name": "",
+        "bot": "0e3f7ae3819401e0",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 390,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "390e5c235eac6ac5",
+        "type": "switch",
+        "z": "85208d6bd6519c2c",
+        "name": "",
+        "property": "payload.content",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "/start",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "/status",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 170,
+        "y": 260,
+        "wires": [
+            [
+                "3cfd373ff219696d"
+            ],
+            [
+                "d322f613b01dc372"
+            ],
+            [
+                "8e3a9fb81488e803"
+            ]
+        ]
+    },
+    {
+        "id": "3cfd373ff219696d",
+        "type": "function",
+        "z": "85208d6bd6519c2c",
+        "name": "function 1",
+        "func": "const chatId = msg.payload.chatId;\n\nmsg.payload = {\n    chatId: chatId,\n    type: \"message\",\n    content: \"Добро пожаловать! Бот студента Novickij готов к работе.\"\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 180,
+        "wires": [
+            [
+                "0dfc17f8ca26caf0"
+            ]
+        ]
+    },
+    {
+        "id": "d322f613b01dc372",
+        "type": "function",
+        "z": "85208d6bd6519c2c",
+        "name": "function 2",
+        "func": "const chatId = msg.payload.chatId;\n\nmsg.payload = {\n    chatId: chatId,\n    type: \"message\",\n    content: \"Статус системы: Node-RED активен, все сервисы работают штатно.\"\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 260,
+        "wires": [
+            [
+                "0dfc17f8ca26caf0"
+            ]
+        ]
+    },
+    {
+        "id": "8e3a9fb81488e803",
+        "type": "function",
+        "z": "85208d6bd6519c2c",
+        "name": "function 3",
+        "func": "const chatId = msg.payload.chatId;\nconst userText = msg.payload.content;\n\nmsg.payload = {\n    chatId: chatId,\n    type: \"message\",\n    content: \"Эхо-ответ: \" + userText\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 320,
+        "wires": [
+            [
+                "0dfc17f8ca26caf0"
+            ]
+        ]
+    },
+    {
+        "id": "0e3f7ae3819401e0",
+        "type": "telegram bot",
+        "botname": "gkllen_bot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "pollinterval": 300,
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": 6667,
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbothost": "0.0.0.0",
+        "localbotport": 8443,
+        "publicbotport": 8443,
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "7f957ba74cff03e7",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-telegrambot": "19.0.3"
+        }
+    }
+]
