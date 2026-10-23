@@ -17,19 +17,19 @@
 Освоена работа с AI-генератором Bubble, настройка Global variables (создана переменная цвета primary-novickij) и Styles. Изучен раздел Data (создание Data types и добавление записей в App Data). Настроены рабочие процессы (Workflows) для обработки нажатий кнопок: действие Data -> Create a new thing (для добавления записи) и Data -> Delete thing (для удаления записи).
 
 **6. Скриншоты всех шагов:**
-![01-prompt](../../screenshots/01-prompt.png)
-![02-buildguide-1](../../screenshots/02-buildguide-1.png)
-![02-buildguide-2](../../screenshots/02-buildguide-2.png)
-![02-buildguide-before](../../screenshots/02-buildguide-before.png)
-![02-buildguide-after](../../screenshots/02-buildguide-after.png)
-![03-global-variable](../../screenshots/03-global-variable.png)
-![04-style](../../screenshots/04-style.png)
-![05-component](../../screenshots/05-component.png)
-![06-data-type](../../screenshots/06-data-type.png)
-![07-data-records](../../screenshots/07-data-records.png)
-![08-workflow-create](../../screenshots/08-workflow-create.png)
-![09-workflow-create](../../screenshots/09-workflow-create.png)
-![10-workflow-delete](../../screenshots/10-workflow-delete.png)
-
+**6. Скриншоты всех шагов:**
+![01-prompt](../screenshots/01-prompt.png)
+![02-buildguide-1](../screenshots/02-buildguide-1.png)
+![02-buildguide-2](../screenshots/02-buildguide-2.png)
+![02-buildguide-before](../screenshots/02-buildguide-before.png)
+![02-buildguide-after](../screenshots/02-buildguide-after.png)
+![03-global-variable](../screenshots/03-global-variable.png)
+![04-style](../screenshots/04-style.png)
+![05-component](../screenshots/05-component.png)
+![06-data-type](../screenshots/06-data-type.png)
+![07-data-records](../screenshots/07-data-records.png)
+![08-workflow-create](../screenshots/08-workflow-create.png)
+![09-workflow-create](../screenshots/09-workflow-create.png)
+![10-workflow-delete](../screenshots/10-workflow-delete.png)
 **7. Выводы:**
 Платформа Bubble позволяет быстро прототипировать веб-приложения за счет AI-инструментов и визуального редактора. Главное преимущество платформы — объединение визуальной части (UI) и логики работы с базой данных (Workflows) в едином интерфейсе без необходимости писать код.
