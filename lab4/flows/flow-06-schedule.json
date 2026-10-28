@@ -1,0 +1,64 @@
+{
+  "name": "flow-06-schedule",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -528,
+        -48
+      ],
+      "id": "0b4db570-e920-4c2f-a5b3-efe549213548",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{ json: { currentTime: new Date().toISOString() } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -304,
+        -48
+      ],
+      "id": "5e8b8838-9bbf-47c8-b94e-f66d3bf18330",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "f4cc3f66-0676-40d5-abde-49529ff0e0f3",
+  "meta": {
+    "instanceId": "1eb09a4764fa6c4fc661e3304938d91c745e95f50fa8d59e25d3f066f6c35a7d"
+  },
+  "nodeGroups": [],
+  "id": "wi4moY0paDC0Z3wP",
+  "tags": []
+}

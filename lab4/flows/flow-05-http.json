@@ -1,0 +1,80 @@
+{
+  "name": "flow-05-http",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        -80
+      ],
+      "id": "5239dc87-580b-442a-a603-2940e8a3b597",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://catfact.ninja/fact",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        -352,
+        -80
+      ],
+      "id": "c79ee4c6-0006-41e6-a189-063d3076777e",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -128,
+        -80
+      ],
+      "id": "954fc859-4c71-4cf0-a252-bb7bc6fcfdc9",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "4219c55c-c5df-4f05-aaac-8327efd16fd7",
+  "meta": {
+    "instanceId": "1eb09a4764fa6c4fc661e3304938d91c745e95f50fa8d59e25d3f066f6c35a7d"
+  },
+  "nodeGroups": [],
+  "id": "wi4moY0paDC0Z3wP",
+  "tags": []
+}
