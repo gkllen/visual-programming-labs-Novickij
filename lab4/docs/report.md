@@ -23,34 +23,33 @@
 7. **Redis** — интеграция с in-memory БД (операции Set, Get, Delete).
 
 ## Скриншоты всех workflow
-*(Убедитесь, что файлы скриншотов лежат в той же папке, или укажите правильный путь к ним)*
 
 1. Установка и запуск n8n:
-![Версия n8n](01-start.png)
+![Версия n8n](../screenshots/01-start.png)
 
 2. Ноды Manual Trigger и Set:
-![Manual Set](02-manual-set.png)
+![Manual Set](../screenshots/02-manual-set.png)
 
 3. Нода Code:
-![Code Node](03-code.png)
+![Code Node](../screenshots/03-code.png)
 
 4. Ветвление логики (If):
-![If Node](04-if.png)
+![If Node](../screenshots/04-if.png)
 
 5. Изменение полей и добавление timestamp:
-![Set Timestamp](05-set.png)
+![Set Timestamp](../screenshots/05-set.png)
 
 6. Работа с HTTP Request:
-![HTTP Request](06-http.png)
+![HTTP Request](../screenshots/06-http.png)
 
 7. Запуск по расписанию (Schedule Trigger):
-![Schedule](07-schedule.png)
+![Schedule](../screenshots/07-schedule.png)
 
 8. Redis — Запись и чтение (Set & Get):
-![Redis Set Get](08-redis.png)
+![Redis Set Get](../screenshots/09-redis.png)
 
 9. Redis — Удаление и проверка (Delete):
-![Redis Delete](09-redis-delete.png)
+![Redis Delete](../screenshots/flow-10-redis.png)
 
 ## Выводы
 В результате выполнения лабораторной работы я освоил базовые принципы low-code/no-code автоматизации в платформе n8n. Я научился строить логические цепочки обработки данных, писать скрипты для трансформации JSON-объектов, отправлять веб-запросы и настраивать триггеры. Особо полезным оказался опыт интеграции n8n с кэширующей базой данных Redis через Docker, что дало понимание того, как сохранять промежуточные состояния (state) между различными запусками рабочих процессов.
