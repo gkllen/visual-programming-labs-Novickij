@@ -1,0 +1,96 @@
+{
+  "name": "flow-09-redis",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -528,
+        -96
+      ],
+      "id": "48b3b09f-99fa-4152-bae6-214903ca0b7b",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "Novickij",
+        "value": "test_data"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        -304,
+        -96
+      ],
+      "id": "3678841d-66d3-4e13-83b8-aacf8b0db529",
+      "name": "Redis",
+      "credentials": {
+        "redis": {
+          "id": "7JnLqYi6FGIny4Mw",
+          "name": "Redis account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "key": "Novickij",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -96
+      ],
+      "id": "541ff7b0-81eb-4bd2-8a8b-c34f838e4380",
+      "name": "Redis1",
+      "credentials": {
+        "redis": {
+          "id": "7JnLqYi6FGIny4Mw",
+          "name": "Redis account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Redis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis": {
+      "main": [
+        [
+          {
+            "node": "Redis1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "d687ce5e-664c-4fee-9fe7-c0f0e0a2be89",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1eb09a4764fa6c4fc661e3304938d91c745e95f50fa8d59e25d3f066f6c35a7d"
+  },
+  "nodeGroups": [],
+  "id": "wi4moY0paDC0Z3wP",
+  "tags": []
+}
