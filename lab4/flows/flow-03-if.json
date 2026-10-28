@@ -1,0 +1,139 @@
+{
+  "name": "flow-03-if",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -272,
+        -48
+      ],
+      "id": "d70d5823-0766-4471-a0cd-99781b2d8e0f",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "const userName = \"Novickij\";\nlet totalScore = 0;\nconst scores = [15, 8, 20];\n\nfor (let i = 0; i < scores.length; i++) {\n    if (scores[i] > 10) {\n        totalScore += scores[i];\n    } else {\n        totalScore += 1;\n    }\n}\n\nconst resultObject = {\n    payload: {\n        student: userName,\n        finalScore: totalScore\n    }\n};\n\nreturn [{ json: resultObject }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -48,
+        -48
+      ],
+      "id": "909ee80c-e930-4a00-9784-f477d726d79a",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 4
+          },
+          "conditions": [
+            {
+              "id": "3099d5fd-c62d-48ee-a73d-d5f1ede2861c",
+              "leftValue": "={{ $json.payload.finalScore }}",
+              "rightValue": 20,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.4,
+      "position": [
+        176,
+        -48
+      ],
+      "id": "774cb7fa-28d1-428f-844e-1de32a5556da",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        400,
+        -144
+      ],
+      "id": "556eddef-2233-4d90-8dc5-62f225486183",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        400,
+        48
+      ],
+      "id": "9a15316b-4e78-4846-8660-b713e699afb4",
+      "name": "No Operation, do nothing1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "72c8bf85-de04-443d-b0a2-5a8671b8e6e0",
+  "meta": {
+    "instanceId": "1eb09a4764fa6c4fc661e3304938d91c745e95f50fa8d59e25d3f066f6c35a7d"
+  },
+  "nodeGroups": [],
+  "id": "wi4moY0paDC0Z3wP",
+  "tags": []
+}

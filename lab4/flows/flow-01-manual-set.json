@@ -1,0 +1,95 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        -64
+      ],
+      "id": "5fc5088f-4cdd-4b7a-bd58-3908a99dbce4",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2e0c1a50-5257-47c2-a926-da1b0a59764f",
+              "name": "payload",
+              "value": "Novickij",
+              "type": "string"
+            },
+            {
+              "id": "4309505b-bf34-454b-84c9-866f95ef8c21",
+              "name": "topic",
+              "value": "lab4/Novickij/basic",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -16,
+        -64
+      ],
+      "id": "cbf568ae-5535-421b-8f8a-4a5d482233ba",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "console.log(items[0].json);\nreturn items;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        208,
+        -64
+      ],
+      "id": "1b355ea9-d8d4-43a0-8513-bf44c110ffd3",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "70ecbc13-2c91-4e96-b608-7922a93fa277",
+  "meta": {
+    "instanceId": "1eb09a4764fa6c4fc661e3304938d91c745e95f50fa8d59e25d3f066f6c35a7d"
+  },
+  "nodeGroups": [],
+  "id": "gebSN0GHFPkXTZfN",
+  "tags": []
+}
